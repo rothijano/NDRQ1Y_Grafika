@@ -197,9 +197,6 @@ void rotation_of_objects(Rotate* rotate) {
 
 	if (action.rotate_isd_in_galaxy == TRUE)
 	rotate->isd_rotation+=0.1;
-
-	
-
 }
 
 void movement_of_objects (Move* move){
