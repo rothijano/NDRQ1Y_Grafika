@@ -156,10 +156,11 @@ void reshape(GLsizei width, GLsizei height) {
 	WINDOW_WIDTH = w;
 	WINDOW_HEIGHT = h;
 
-	//if (!help_on)
+	if (!help_on)
 		gluPerspective(50.0, viewport_ratio, 0.1, 20000.0);
-	//else
-	//	gluOrtho2D(0, w, h, 0);
+	else
+		gluOrtho2D(0, width, height, 0);
+
 }
 
 
@@ -173,7 +174,6 @@ void draw_help() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluOrtho2D(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, help);
 	glBegin(GL_QUADS);
@@ -420,6 +420,8 @@ void initialize()
     help = load_texture("textures//help.png");
     init_entities(&world);
     glEnable(GL_TEXTURE_2D);
+	WINDOW_WIDTH = glutGet(GLUT_WINDOW_WIDTH);
+	WINDOW_HEIGHT = glutGet(GLUT_WINDOW_HEIGHT);	
 }
 
 
