@@ -128,16 +128,38 @@ void specialFunc(int key, int x, int y) {
 
 
 void reshape(GLsizei width, GLsizei height) {
-	WINDOW_WIDTH = width;
-	WINDOW_HEIGHT = height;
+	float viewport_ratio = (16.0f / 9.0f);
 
-	glViewport(0, 0, width, height);
+	int x, y, w, h;
+	double ratio;
+
+	ratio = (double)width / height;
+	if (ratio > viewport_ratio)
+	{
+		w = (int)((double)height * viewport_ratio);
+		h = height;
+		x = (width - w) / 2;
+		y = 0;
+	}
+	else
+	{
+		w = width;
+		h = (int)((double)width / viewport_ratio);
+		x = 0;
+		y = (height - h) / 2;
+	}
+
+	glViewport(x, y, w, h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	if (!help_on)
-		gluPerspective(50.0, (GLdouble)width / (GLdouble)height, 0.1, 20000.0);
-	else
-		gluOrtho2D(0, width, height, 0);
+
+	WINDOW_WIDTH = w;
+	WINDOW_HEIGHT = h;
+
+	//if (!help_on)
+		gluPerspective(50.0, viewport_ratio, 0.1, 20000.0);
+	//else
+	//	gluOrtho2D(0, w, h, 0);
 }
 
 
@@ -151,6 +173,7 @@ void draw_help() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	gluOrtho2D(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, help);
 	glBegin(GL_QUADS);
@@ -164,7 +187,7 @@ void draw_help() {
 	glVertex3f(0, WINDOW_HEIGHT, 0);
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
-	reshape(WINDOW_WIDTH, WINDOW_HEIGHT);
+	//reshape(WINDOW_WIDTH, WINDOW_HEIGHT);
 	glutSwapBuffers();
 }
 
@@ -224,7 +247,7 @@ void display() {
 		draw_environment(world, &rotate, move);
 		movement_of_objects(&move);
 		rotation_of_objects(&rotate);
-		reshape(WINDOW_WIDTH, WINDOW_HEIGHT);
+		//reshape(WINDOW_WIDTH, WINDOW_HEIGHT);
 		glutSwapBuffers();
 
 	}
