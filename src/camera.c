@@ -5,7 +5,6 @@
 #define M_PI 3.14159265358979323846
 #define ds_size 850
 #define isd_size 300
-#define deathstar_size 85
 
 
 
