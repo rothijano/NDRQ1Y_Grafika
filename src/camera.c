@@ -5,7 +5,6 @@
 #define M_PI 3.14159265358979323846
 #define ds_size 850
 #define isd_size 300
-#define deathstar_size 85
 
 
 
@@ -18,7 +17,7 @@ double degree_to_radian(double degree)
 
 void init_camera(struct Camera* camera)
 {
-	camera->position.x = 2000;
+	camera->position.x = 2200;
 	camera->position.y = 0;
 	camera->position.z = 150;
 

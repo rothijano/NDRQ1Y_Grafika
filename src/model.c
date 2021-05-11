@@ -536,7 +536,7 @@ void init_entities(World* world){
 
 	//Load the isd object and texture.
 	load_model("objects\\isd2.obj", &world->isd.model);
-	world->isd.texture = load_texture("textures\\isd2.png");
+	world->isd.texture = load_texture("textures\\isd.png");
 	scale_model (&world->isd.model, 150.0, 150.0, 150.0);
 
 

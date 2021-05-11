@@ -216,7 +216,6 @@ void draw_environment(World world, Rotate* rotate, Move move ){
 		glMaterialfv(GL_FRONT, GL_AMBIENT, world.ds.material_ambient);
 		glBindTexture(GL_TEXTURE_2D, world.ds.texture);
 		glScalef(1.0f, 1.0f, 1.0f);
-		//glRotatef(rotate->ds_rotation, 1, 1, 1);
 		draw_model(&world.ds.model);
 
     glPopMatrix();
